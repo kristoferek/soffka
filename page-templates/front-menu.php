@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Front
+Template Name: Front menu
 */
 get_header(); ?>
 
