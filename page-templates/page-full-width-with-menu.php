@@ -1,19 +1,29 @@
 <?php
 /*
-Template Name: Full width content
+Template Name: Full width content + menu
 */
 get_header(); ?>
 
 <nav id="bread" aria-label="You are here:" role="navigation">
 	<?php get_template_part( 'template-parts/breadcrumbs' ); ?>
 </nav>
-<div class="main-wrap full-width" role="main">
+<div class="main-wrap full-width navigation-pink" role="main">
 
 	<?php do_action( 'foundationpress_before_content' ); ?>
 	<?php while ( have_posts() ) : the_post(); ?>
 		<article <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
-			<header>
-				<h1 class="entry-title"><?php the_title(); ?></h1>
+			<header class="row">
+				<div class="small-3 columns">
+					<?php
+					// If a featured image is set, insert into layout and use Interchange
+					// to select the optimal image size per named media query.
+					if ( has_post_thumbnail( $post->ID ) ) : ?>
+					<img class="small" src="<?php the_post_thumbnail_url('post-thumbnail'); ?>">
+					<?php endif; ?>
+				</div>
+				<div class="small-9 columns">
+					<h1 class="entry-title medium-centered navigation-title"><?php the_title(); ?></h1>
+				</div>
 			</header>
 			<?php do_action( 'foundationpress_page_before_entry_content' ); ?>
 			<div class="entry-content">

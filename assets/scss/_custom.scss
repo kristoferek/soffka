@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css?family=Michroma');
+
+// Front Pagebutton colors
+$color-pink: rgb(230,50,110);
+$color-green: rgb(10,150,10);
+$color-blue: rgb(30,75,164);
+$color-lightblue: rgb(90,164,184);
+
+// Navi buttons styling
+@mixin navi-button($bg-color){
+  border: 2px solid white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: $bg-color;
+  color: white;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  &:hover {
+    box-shadow: 0 2px 6px  rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0); ;
+    background-color: darken($bg-color, 10);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+}
+
+// Front page navi buttons
+@mixin button-front($path, $text, $bg-color){
+  display:block;
+  position: relative;
+  width: calc(100vw / 2 - #{map-get($grid-column-gutter, "small")} * 1.5);
+  height:  calc(100vw / 2 - #{map-get($grid-column-gutter, "small")} * 1.5);
+  min-width: 50px;
+  min-height: 50px;
+  margin-bottom: 5%;
+  max-width: 270px;
+  max-height: 270px;
+  @include navi-button($bg-color);
+  &::before{
+    position: absolute;
+    width: 100%;
+    padding: 5%;
+    content: $text;
+    font-weight: 500;
+    text-align: center;
+    font-size: calc((100vw / 2 - #{map-get($grid-column-gutter, "small")}) * 0.14);
+    line-height: calc((100vw / 2 - #{map-get($grid-column-gutter, "small")}) * 0.15);
+  }
+  @include breakpoint(medium){
+    width: calc(100vw / 4 - #{map-get($grid-column-gutter, "medium")});
+    height:  calc(100vw / 4 - #{map-get($grid-column-gutter, "medium")});
+    &::before{
+      font-size: calc((100vw / 4 - #{map-get($grid-column-gutter, "medium")}) * 0.14);
+      line-height: calc((100vw / 4 - #{map-get($grid-column-gutter, "medium")}) * 0.15);
+    }
+  }
+  @include breakpoint(large){
+    &::before{
+      font-size: 270px * 0.14;
+      line-height: 270px * 0.15;
+    }
+  }
+  &::after{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url($path);
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center 80%;
+    content: "";
+  }
+}
+
+// Background image with blend in header and content
+body{
+  background-image: url("../images/bg.jpg");
+  background-size: cover;
+
+  // Header
+  .site-header{
+    background-color: rgba(80,160,190, 0.7);
+    // Header warpping the same as content
+    .title-wrap {
+      @include grid-row();
+    }
+
+    // Logo and description styling
+    .site-desktop-title, .site-mobile-title{
+      &.name{
+        font-size: 2em;
+        font-family: Michroma, sans-serif;
+        color: white;
+        padding-left: 0.5rem;
+      }
+      &.description{
+        padding: rem-calc(20px);
+      }
+      a{
+        color: white;
+        &:hover{
+          color: lightgray;
+        }
+      }
+    }
+    .title-bar, .top-bar{
+      background: none;
+    }
+  }
+
+  // Removed background gap between header and content
+  .main-wrap {
+    margin-top: 0;
+  }
+  // Breadcrumbs
+  #bread{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgba($primary-color, 0.7);
+    .breadcrumbs{
+      margin-bottom: 0;
+      @include grid-row();
+      padding-left: $global-margin;
+      .breadcrumbs-image{
+        width: 22px;
+        height: 22px;
+        margin: 5px 0;
+      }
+      span{
+        margin-left: 5px;
+      }
+    }
+  }
+
+  /* Front Pge */
+  // Added top gap section and row container
+  .tagline, .visualMenu, .invitation{
+    @include grid-row();
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    @include breakpoint(medium) {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+
+  // Front page subheader
+  .tagline{
+    background-color: rgba($white, 0.7);
+    h1{
+      color: rgb(89, 134, 187);
+    }
+    li{
+      @include breakpoint(medium) {
+        display: inline;
+      }
+    }
+  }
+
+  // Square Buttons
+  .visualMenu{
+    .infidelity{
+      @include button-front('../images/zdradzono_mnie.png', 'zdradzono mnie', $color-pink);
+    }
+    .romance{
+      @include button-front('../images/mam_romans.png', 'mam romans', $color-green);
+    }
+    .stories{
+      @include button-front('../images/historie_icon.png', 'historie', $color-blue);
+    }
+    .support{
+      @include button-front('../images/wsparcie_icon.png', 'wsparcie', $color-lightblue);
+    }
+  }
+
+  // Invitation
+  .invitation{
+    background-color: rgba(get-color(primary), 0.7);
+    color: $white;
+  }
+
+  /* Full Width Page */
+  // Navigation section
+  .navigation-pink{
+    background-color: rgba($color-pink, 0.6);
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+    // Navigation and Page title
+    .navigation-title{
+      color: $white;
+      text-align: center;
+      border-bottom: solid white 2px;
+      // text-shadow: 0px 0px 4px ($black);
+    }
+    // Buttons
+    .card{
+      @include navi-button($color-pink);
+      img{
+        min-width: 50px;
+        max-width: 50px;
+        width: 100%;
+        @include breakpoint(medium){
+          min-width: 90px;
+          max-width: 90px;
+        }
+      }
+    }
+  }
+}

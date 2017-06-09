@@ -5,7 +5,7 @@
 }
 
 .desktop-menu,
-.site-navigation .top-bar-left {
+.site-navigation .top-bar-left, .site-navigation .top-bar-right {
   @include show-for(medium);
 }
 
