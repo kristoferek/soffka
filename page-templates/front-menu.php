@@ -29,7 +29,7 @@ get_header(); ?>
 		</div>
 
 		<div class="small-6 medium-3 columns">
-			<a class="stories" href="<?php echo esc_url( home_url( '/historie/' ) ); ?>" alt="Historie">
+			<a class="stories" href="<?php echo esc_url( home_url( '/zdrada/' ) ); ?>" alt="O zdradzie">
 			</a>
 		</div>
 
