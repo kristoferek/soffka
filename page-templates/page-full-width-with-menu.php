@@ -13,16 +13,16 @@ get_header(); ?>
 	<?php while ( have_posts() ) : the_post(); ?>
 		<article <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
 			<header class="row">
-				<div class="small-3 columns">
+				<div class="small-10 columns">
+					<h1 class="entry-title medium-centered navigation-title"><?php the_title(); ?></h1>
+				</div>
+				<div class="small-2 columns navigation-image">
 					<?php
 					// If a featured image is set, insert into layout and use Interchange
 					// to select the optimal image size per named media query.
 					if ( has_post_thumbnail( $post->ID ) ) : ?>
-					<img class="small" src="<?php the_post_thumbnail_url('post-thumbnail'); ?>">
+					<img class="alignright" src="<?php the_post_thumbnail_url('post-thumbnail'); ?>">
 					<?php endif; ?>
-				</div>
-				<div class="small-9 columns">
-					<h1 class="entry-title medium-centered navigation-title"><?php the_title(); ?></h1>
 				</div>
 			</header>
 			<?php do_action( 'foundationpress_page_before_entry_content' ); ?>
