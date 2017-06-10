@@ -230,4 +230,11 @@ body{
       }
     }
   }
+  // Accordion
+  .accordion-title{
+      font-size: 1rem;
+    @include breakpoint(medium){
+      font-size: 1.4rem;
+    }
+  }
 }
